@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest package="com.proj.abhi.mytermplanner" xmlns:android="http://schemas.android.com/apk/res/android">
+<application android:theme="@style/AppTheme" android:supportsRtl="true" android:roundIcon="@mipmap/ic_launcher_round" android:label="@string/app_name" android:icon="@mipmap/ic_launcher" android:allowBackup="true">
+<activity android:theme="@style/AppTheme.NoActionBar" android:label="@string/app_name" android:name=".activities.HomeActivity">
+<intent-filter>
+<action android:name="android.intent.action.MAIN"/>
+<category android:name="android.intent.category.LAUNCHER"/>
+</intent-filter>
+</activity>
+<activity android:theme="@style/AppTheme.NoActionBar" android:label="@string/term_editor" android:name=".activities.TermActivity">
+<meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".activities.HomeActivity"/>
+</activity>
+<activity android:theme="@style/AppTheme.NoActionBar" android:label="@string/prof_editor" android:name=".activities.ProfessorActivity">
+<meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".activities.HomeActivity"/>
+</activity>
+<activity android:theme="@style/AppTheme.NoActionBar" android:label="@string/course_editor" android:name=".activities.CourseActivity">
+<meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".activities.TermActivity"/>
+</activity>
+<activity android:theme="@style/AppTheme.NoActionBar" android:label="@string/assessment_editor" android:name=".activities.AssessmentActivity">
+<meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".activities.CourseActivity"/>
+</activity>
+<provider android:name=".providers.HomeCoursesProvider" android:exported="false" android:authorities="com.proj.abhi.homecoursesprovider"/>
+<provider android:name=".providers.HomeAssessmentsProvider" android:exported="false" android:authorities="com.proj.abhi.homeassessmentsprovider"/>
+<provider android:name=".providers.TermsProvider" android:exported="false" android:authorities="com.proj.abhi.termsprovider"/>
+<provider android:name=".providers.CoursesProvider" android:exported="false" android:authorities="com.proj.abhi.coursesprovider"/>
+<provider android:name=".providers.AssessmentsProvider" android:exported="false" android:authorities="com.proj.abhi.assessmentsprovider"/>
+<provider android:name=".providers.ProfProvider" android:exported="false" android:authorities="com.proj.abhi.profsprovider"/>
+<provider android:name=".providers.PhonesProvider" android:exported="false" android:authorities="com.proj.abhi.phonesprovider"/>
+<provider android:name=".providers.EmailsProvider" android:exported="false" android:authorities="com.proj.abhi.emailsprovider"/>
+<provider android:name=".providers.CoursesProfsProvider" android:exported="false" android:authorities="com.proj.abhi.coursesprofsprovider"/>
+<service android:name=".services.AlarmService" android:enabled="true"/>
+<service android:name=".services.NotifyService" android:enabled="true">
+<intent-filter>
+<action android:name="com.proj.abhi.mytermplanner.NotifyService"/>
+</intent-filter>
+</service>
+<receiver android:name=".receivers.AlarmReceiver" android:exported="true" android:enabled="true" android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+<intent-filter>
+<action android:name="android.intent.action.BOOT_COMPLETED"/>
+</intent-filter>
+</receiver>
+</application>
+<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+</manifest>
